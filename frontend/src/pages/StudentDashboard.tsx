@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from '../components/ui/button';
+import GradientPage from '../components/ui/gradient-page';
+import GlassCard from '../components/ui/glass-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import MaterialBrowser from '../components/student/MaterialBrowser';
 import QuizTaker from '../components/student/QuizTaker';
@@ -12,17 +14,19 @@ const StudentDashboard = () => {
   const [activeTab, setActiveTab] = useState('materials');
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Student Dashboard</h1>
-        <div className="flex items-center gap-4">
-          <span className="text-gray-600">{user?.email}</span>
-          <Button onClick={signOut} variant="outline">Sign Out</Button>
+    <GradientPage>
+      <div className="container mx-auto p-6 text-white">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold">Student Dashboard</h1>
+          <div className="flex items-center gap-4">
+            <span className="text-white/80">{user?.email}</span>
+            <Button onClick={signOut} variant="outline">Sign Out</Button>
+          </div>
         </div>
-      </div>
 
-      <Tabs defaultValue="materials" value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-4 mb-8">
+        <GlassCard>
+        <Tabs defaultValue="materials" value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid grid-cols-4 mb-4">
           <TabsTrigger value="materials" className="flex items-center gap-2">
             <BookOpen className="h-4 w-4" />
             <span>Study Materials</span>
@@ -54,17 +58,19 @@ const StudentDashboard = () => {
         </TabsContent>
 
         <TabsContent value="ai">
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <GlassCard className="p-6">
             <h2 className="text-xl font-semibold mb-4">AI Learning Assistant</h2>
-            <p className="text-gray-600 mb-4">Get help with your studies using our AI assistant.</p>
-            <div className="p-6 border border-dashed rounded-lg text-center">
-              <p className="text-gray-500">AI Assistant feature coming soon!</p>
-              <p className="text-gray-500 mt-2">This feature will allow you to ask questions about your study materials and get instant help.</p>
+            <p className="text-white/80 mb-4">Get help with your studies using our AI assistant.</p>
+            <div className="p-6 border border-dashed border-white/20 rounded-lg text-center">
+              <p className="text-white/70">AI Assistant feature coming soon!</p>
+              <p className="text-white/60 mt-2">This feature will allow you to ask questions about your study materials and get instant help.</p>
             </div>
-          </div>
+          </GlassCard>
         </TabsContent>
-      </Tabs>
-    </div>
+        </Tabs>
+        </GlassCard>
+      </div>
+    </GradientPage>
   );
 };
 

@@ -225,7 +225,7 @@ const QuizCreator = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <div className="p-6 rounded-lg border border-white/10 bg-white/5 text-white">
       <h2 className="text-2xl font-bold mb-6">Create Quiz</h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -266,13 +266,13 @@ const QuizCreator = () => {
           </div>
           
           {questions.length === 0 && (
-            <div className="text-center py-8 border border-dashed rounded-md">
-              <p className="text-gray-500">No questions added yet. Click "Add Question" to start.</p>
+            <div className="text-center py-8 border border-dashed border-white/20 rounded-md">
+              <p className="text-white/70">No questions added yet. Click "Add Question" to start.</p>
             </div>
           )}
           
           {questions.map((question, qIndex) => (
-            <div key={question.id} className="border rounded-md p-4 space-y-4">
+            <div key={question.id} className="border border-white/10 rounded-md p-4 space-y-4 bg-white/5">
               <div className="flex justify-between items-start">
                 <h4 className="font-medium">Question {qIndex + 1}</h4>
                 <Button
@@ -307,7 +307,7 @@ const QuizCreator = () => {
                     'type', 
                     e.target.value as 'multiple_choice' | 'short_answer'
                   )}
-                  className="w-full p-2 border rounded-md"
+                  className="w-full p-2 border rounded-md bg-white/5 border-white/20"
                 >
                   <option value="multiple_choice">Multiple Choice</option>
                   <option value="short_answer">Short Answer</option>
@@ -356,7 +356,7 @@ const QuizCreator = () => {
                       </Button>
                     </div>
                   ))}
-                  <p className="text-xs text-gray-500">Select the radio button next to the correct answer</p>
+                  <p className="text-xs text-white/70">Select the radio button next to the correct answer</p>
                 </div>
               )}
             </div>

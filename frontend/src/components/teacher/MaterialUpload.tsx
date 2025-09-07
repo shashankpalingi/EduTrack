@@ -73,7 +73,7 @@ const MaterialUpload = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <div className="p-6 rounded-lg border border-white/10 bg-white/5 text-white">
       <h2 className="text-2xl font-bold mb-6">Upload Study Material</h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -108,7 +108,7 @@ const MaterialUpload = () => {
             required
           />
           {file && (
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-white/70">
               Selected file: {file.name} ({(file.size / 1024 / 1024).toFixed(2)} MB)
             </p>
           )}

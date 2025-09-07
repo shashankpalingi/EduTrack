@@ -87,32 +87,32 @@ const MaterialBrowser = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <div className="p-6 rounded-lg border border-white/10 bg-white/5 text-white">
       <h2 className="text-2xl font-bold mb-6">Study Materials</h2>
       
       {loading && <p className="text-center py-4">Loading materials...</p>}
       
       {!loading && materials.length === 0 && (
-        <div className="text-center py-8 border border-dashed rounded-md">
-          <p className="text-gray-500">No study materials available yet.</p>
+        <div className="text-center py-8 border border-dashed border-white/20 rounded-md">
+          <p className="text-white/70">No study materials available yet.</p>
         </div>
       )}
       
       {!loading && materials.length > 0 && (
         <div className="space-y-4">
           {materials.map((material) => (
-            <div key={material.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div key={material.id} className="border border-white/10 rounded-lg p-4 bg-white/5">
               <div className="flex items-start justify-between">
                 <div className="flex items-start space-x-3">
-                  <div className="p-2 bg-gray-100 rounded">
+                  <div className="p-2 bg-white/10 rounded">
                     {getFileTypeIcon(material.file_type)}
                   </div>
                   <div>
                     <h3 className="font-medium text-lg">{material.title}</h3>
                     {material.description && (
-                      <p className="text-gray-600 mt-1">{material.description}</p>
+                      <p className="text-white/80 mt-1">{material.description}</p>
                     )}
-                    <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
+                    <div className="flex items-center space-x-4 mt-2 text-sm text-white/70">
                       <div className="flex items-center">
                         <Calendar className="h-3 w-3 mr-1" />
                         {formatDate(material.created_at)}

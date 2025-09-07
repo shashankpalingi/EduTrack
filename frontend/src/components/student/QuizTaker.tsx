@@ -275,12 +275,12 @@ const QuizTaker = () => {
           <h3 className="text-lg font-medium">
             Question {currentQuestionIndex + 1} of {questions.length}
           </h3>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-white/70">
             {currentQuestion.question_type === 'multiple_choice' ? 'Multiple Choice' : 'Short Answer'}
           </div>
         </div>
         
-        <div className="p-4 bg-gray-50 rounded-lg">
+        <div className="p-4 bg-white/5 rounded-lg border border-white/10">
           <p className="text-lg">{currentQuestion.question_text}</p>
         </div>
         
@@ -289,7 +289,7 @@ const QuizTaker = () => {
             {(questionOptions[currentQuestion.id] || []).map((option) => (
               <div 
                 key={option.id} 
-                className={`p-3 border rounded-lg cursor-pointer hover:bg-gray-50 ${answer.selectedOptionId === option.id ? 'border-blue-500 bg-blue-50' : ''}`}
+                className={`p-3 border rounded-lg cursor-pointer bg-white/5 hover:bg-white/10 border-white/20 ${answer.selectedOptionId === option.id ? 'ring-2 ring-primary' : ''}`}
                 onClick={() => handleOptionSelect(currentQuestion.id, option.id)}
               >
                 {option.option_text}
@@ -303,7 +303,7 @@ const QuizTaker = () => {
             value={answer.textAnswer || ''}
             onChange={(e) => handleTextAnswer(currentQuestion.id, e.target.value)}
             placeholder="Type your answer here..."
-            className="w-full p-3 border rounded-lg h-32"
+            className="w-full p-3 border rounded-lg h-32 bg-white/5 border-white/20"
           />
         )}
         
@@ -356,7 +356,7 @@ const QuizTaker = () => {
           </div>
           
           {answeredQuestions < totalQuestions && (
-            <div className="flex items-center text-amber-600 mb-4">
+            <div className="flex items-center text-amber-400 mb-4">
               <AlertCircle className="h-5 w-5 mr-2" />
               <p>You haven't answered all questions. Unanswered questions will be marked as incorrect.</p>
             </div>
@@ -382,14 +382,14 @@ const QuizTaker = () => {
               return (
                 <div key={question.id} className="flex items-center">
                   <div className="mr-3">
-                    {status === 'correct' && <CheckCircle className="h-5 w-5 text-green-500" />}
-                    {status === 'incorrect' && <XCircle className="h-5 w-5 text-red-500" />}
-                    {status === 'answered' && <Clock className="h-5 w-5 text-amber-500" />}
-                    {status === 'unanswered' && <AlertCircle className="h-5 w-5 text-gray-400" />}
+                    {status === 'correct' && <CheckCircle className="h-5 w-5 text-green-400" />}
+                    {status === 'incorrect' && <XCircle className="h-5 w-5 text-red-400" />}
+                    {status === 'answered' && <Clock className="h-5 w-5 text-amber-400" />}
+                    {status === 'unanswered' && <AlertCircle className="h-5 w-5 text-white/40" />}
                   </div>
                   <div>
                     <p className="font-medium">Question {index + 1}</p>
-                    <p className="text-sm text-gray-600 truncate">{question.question_text}</p>
+                    <p className="text-sm text-white/70 truncate">{question.question_text}</p>
                   </div>
                 </div>
               );
@@ -415,7 +415,7 @@ const QuizTaker = () => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <div className="p-6 rounded-lg border border-white/10 bg-white/5 text-white">
       <h2 className="text-2xl font-bold mb-6">Quizzes</h2>
       
       {loading && <p className="text-center py-4">Loading...</p>}
@@ -423,8 +423,8 @@ const QuizTaker = () => {
       {!loading && !selectedQuizId && (
         <div>
           {quizzes.length === 0 ? (
-            <div className="text-center py-8 border border-dashed rounded-md">
-              <p className="text-gray-500">No quizzes available yet.</p>
+            <div className="text-center py-8 border border-dashed border-white/20 rounded-md">
+              <p className="text-white/70">No quizzes available yet.</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -433,14 +433,14 @@ const QuizTaker = () => {
               {quizzes.map((quiz) => (
                 <div 
                   key={quiz.id} 
-                  className="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                  className="border border-white/10 rounded-lg p-4 bg-white/5 cursor-pointer hover:bg-white/10"
                   onClick={() => loadQuiz(quiz.id)}
                 >
                   <h4 className="font-medium text-lg">{quiz.title}</h4>
                   {quiz.description && (
-                    <p className="text-gray-600 mt-1">{quiz.description}</p>
+                    <p className="text-white/80 mt-1">{quiz.description}</p>
                   )}
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-white/70 mt-2">
                     Created: {formatDate(quiz.created_at)}
                   </p>
                 </div>
@@ -464,7 +464,7 @@ const QuizTaker = () => {
             <h3 className="text-xl font-semibold">{currentQuiz.title}</h3>
           </div>
           
-          <div className="p-4 bg-gray-50 rounded-lg">
+          <div className="p-4 bg-white/5 rounded-lg border border-white/10">
             {currentQuiz.description && (
               <p className="mb-4">{currentQuiz.description}</p>
             )}
