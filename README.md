@@ -121,7 +121,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Mobile-responsive design improvements
 - Real-time collaboration features
 
-Project Link: [https://studybuddy08.netlify.app/](https://studybuddy08.netlify.app/)
+
 
 ---
 
