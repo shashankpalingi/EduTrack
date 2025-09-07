@@ -1,10 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import { NavBar } from './ui/tubelight-navbar';
-import { Home, BookOpen, Users, User } from 'lucide-react';
+import { Home, BookOpen, Users, LogIn } from 'lucide-react';
 
 const Navigation = () => {
-  const { currentUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSectionScroll = (sectionId: string) => {
@@ -39,12 +37,12 @@ const Navigation = () => {
       icon: Users,
       onClick: () => handleSectionScroll('features')
     },
-    { 
-      name: 'Sign In', 
-      url: '/auth', 
-      icon: User,
+    {
+      name: 'Sign In',
+      url: '/auth',
+      icon: LogIn,
       onClick: () => navigate('/auth')
-    },
+    }
   ];
 
   return (

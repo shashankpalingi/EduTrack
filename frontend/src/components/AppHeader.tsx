@@ -48,18 +48,36 @@ const AppHeader: React.FC<AppHeaderProps> = ({
       console.error('Failed to log out', error);
     }
   };
+  
+  // Function to navigate to the appropriate dashboard based on user role
+  const navigateToDashboard = () => {
+    const userRole = localStorage.getItem('userRole') || 'student';
+    if (userRole === 'teacher') {
+      navigate('/teacher-dashboard');
+    } else {
+      navigate('/student-dashboard');
+    }
+  };
 
   return (
     <header className="fixed top-0 right-0 left-0 backdrop-blur-md bg-white/70 border-b border-white/20 text-gray-900 h-16 flex items-center justify-between px-6 z-40 shadow-sm">
       {/* Logo */}
       <div className="flex items-center">
-        <Link to="/" className="cursor-pointer">
+        <div onClick={navigateToDashboard} className="cursor-pointer">
           <img 
-            src="/studybuddylogo.png" 
-            alt="StudyBuddy" 
+            src="/edutracklogo.svg" 
+            alt="EduTrack" 
             className="h-8"
           />
-        </Link>
+        </div>
+      </div>
+
+      {/* Navigation Links - Desktop */}
+      <div className="hidden md:flex items-center space-x-6 ml-10">
+        <div onClick={navigateToDashboard} className="text-gray-900 hover:text-blue-600 font-medium text-sm transition-colors cursor-pointer">Home</div>
+        <Link to="/materials" className="text-gray-900 hover:text-blue-600 font-medium text-sm transition-colors">Materials</Link>
+        <Link to="/take-quiz/latest" className="text-gray-900 hover:text-blue-600 font-medium text-sm transition-colors">Assignments</Link>
+        <Link to="/ai-assistant" className="text-gray-900 hover:text-blue-600 font-medium text-sm transition-colors">AI Assistant</Link>
       </div>
 
       {/* Search Bars - Only show on Study Rooms page */}
@@ -157,6 +175,31 @@ const AppHeader: React.FC<AppHeaderProps> = ({
             )}
             <DropdownMenuItem
               className="hover:bg-blue-50/50"
+              onClick={navigateToDashboard}
+            >
+              <span>Home</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="hover:bg-blue-50/50"
+              onClick={() => navigate('/materials')}
+            >
+              <span>Materials</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="hover:bg-blue-50/50"
+              onClick={() => navigate('/take-quiz/latest')}
+            >
+              <span>Assignments</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="hover:bg-blue-50/50"
+              onClick={() => navigate('/ai-assistant')}
+            >
+              <span>AI Assistant</span>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-gray-200/50" />
+            <DropdownMenuItem
+              className="hover:bg-blue-50/50"
               onClick={() => navigate('/profile')}
             >
               <User className="mr-2 h-4 w-4" />
@@ -223,4 +266,4 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   );
 };
 
-export default AppHeader; 
+export default AppHeader;

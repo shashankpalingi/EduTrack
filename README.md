@@ -1,89 +1,104 @@
-# Study Buddy: Revolutionizing Collaborative Learning 🚀
+# EduTrack: Empowering Educational Experiences 🚀
 
 <div align="center">
-  <img src="frontend/public/landingpage.jpeg" alt="Study Buddy Landing Page" width="100%">
   
-  [![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
+  [![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)](https://www.typescriptlang.org/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-blueviolet?logo=tailwind-css)](https://tailwindcss.com/)
-  [![Firebase](https://img.shields.io/badge/Firebase-Authentication-orange?logo=firebase)](https://firebase.google.com/)
-  [![Netlify](https://img.shields.io/badge/Netlify-Deploy-blue?logo=netlify)](https://www.netlify.com/)
+  [![Supabase](https://img.shields.io/badge/Supabase-Database-green?logo=supabase)](https://supabase.com/)
+  [![Vite](https://img.shields.io/badge/Vite-Build-purple?logo=vite)](https://vitejs.dev/)
 </div>
 
 ## 🌟 Our Vision
 
-**Transforming Learning Together** - Study Buddy is more than just an app; it's a collaborative learning ecosystem designed to make studying engaging, efficient, and enjoyable. From group study sessions to real-time collaboration, we're revolutionizing how students learn and interact.
+**Transforming Education for Everyone** - EduTrack is a comprehensive educational platform designed to bridge the gap between teachers and students. With role-based access, intuitive dashboards, and powerful features, we're making education more accessible, engaging, and effective.
 
 ## 🎯 Key Features
 
-### 🤝 Collaborative Learning
-- **Real-time Study Rooms**: Create and join study groups
-- **Collaborative Notes**: Shared note-taking with real-time updates
-- **Group Discussions**: Chat and communicate while studying
+### 👨‍🏫 Teacher Features
+- **Study Material Management**: Upload and organize learning resources
+- **Quiz Creation**: Build quizzes with multiple-choice and short-answer questions
+- **Student Progress Tracking**: Monitor student performance and engagement
+- **Submission Viewing**: Review and evaluate student quiz submissions
 
-### 🕒 Productivity Tools
-- **Study Timer**: Pomodoro-style time management
-- **Task Manager**: Track and manage your study tasks
-- **Poll System**: Create quick polls for group decision-making
+### 👨‍🎓 Student Features
+- **Material Browser**: Access and download study materials
+- **Interactive Quizzes**: Take quizzes and receive immediate feedback
+- **Progress Analytics**: Track learning progress with visual charts
+- **Performance Metrics**: View scores and improvement over time
 
-### 🎥 Interactive Features
-- **Video Call Integration**: Seamless video communication
-- **YouTube Watch Together**: Synchronize video watching
-- **Whiteboard**: Collaborative drawing and brainstorming
+### 🔒 Authentication & Security
+- **Role-based Access**: Separate dashboards for teachers and students
+- **Protected Routes**: Secure access to role-specific features
+- **User Profiles**: Personalized user experience
 
 ## 🚀 Tech Stack
 
-- **Frontend**: React 19, TypeScript, Tailwind CSS
-- **Backend**: Firebase Authentication and Firestore
-- **Deployment**: Netlify
-- **State Management**: React Contexts
+- **Frontend**: React 18, TypeScript, Tailwind CSS
+- **Backend**: Supabase (Authentication, Database, Storage)
+- **Build Tool**: Vite
+- **State Management**: React Context API
 - **UI Components**: Shadcn/ui
+- **Data Visualization**: Recharts
 
 ## 🏗️ Project Structure
 
 ```
-study-buddy/
+edutrack/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   ├── contexts/
-│   │   ├── hooks/
-│   │   ├── pages/
-│   │   └── services/
-├── backend/
-│   └── firebase/
-└── README.md
+│   │   │   ├── student/    # Student-specific components
+│   │   │   ├── teacher/    # Teacher-specific components
+│   │   │   └── ui/         # Reusable UI components
+│   │   ├── contexts/       # React context providers
+│   │   ├── lib/            # Utility functions and API clients
+│   │   └── pages/          # Main application pages
+├── supabase/
+│   └── schema.sql          # Database schema definition
+└── SUPABASE_SETUP.md       # Supabase setup guide
 ```
 
 ## 🎮 Quick Start
 
 ### Prerequisites
-- Node.js (v18+)
-- npm or bun
-- Firebase Account
+- Node.js (v16+)
+- npm or yarn
+- Supabase Account
 
 ### Installation
 
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/study-buddy.git
-cd study-buddy
+git clone https://github.com/your-username/edutrack.git
+cd edutrack
 ```
 
 2. Install dependencies
 ```bash
 cd frontend
-npm install  # or bun install
+npm install  # or yarn install
 ```
 
-3. Set up Firebase
-- Create a Firebase project
-- Add your Firebase configuration to `src/lib/firebase.ts`
-
-4. Run the development server
+3. Set up environment variables
+- Copy `.env.example` to `.env`
+- Add your Supabase URL and anon key
 ```bash
-npm run dev  # or bun run dev
+cp .env.example .env
 ```
+
+4. Set up Supabase
+- Follow the instructions in `SUPABASE_SETUP.md`
+- Import the database schema from `supabase/schema.sql`
+
+5. Run the development server
+```bash
+npm run dev  # or yarn dev
+```
+
+6. Access the application
+- Open your browser and navigate to `http://localhost:5173`
+- Sign up as a teacher or student to explore the respective dashboards
 
 ## 🤝 Contributing
 
@@ -95,8 +110,16 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## 📝 License
 
-## 🌐 Contact
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🚀 Coming Soon
+
+- AI Assistant for personalized learning support
+- Enhanced analytics for teachers
+- Mobile-responsive design improvements
+- Real-time collaboration features
 
 Project Link: [https://studybuddy08.netlify.app/](https://studybuddy08.netlify.app/)
 
@@ -105,4 +128,4 @@ Project Link: [https://studybuddy08.netlify.app/](https://studybuddy08.netlify.a
 <div align="center">
   <b>Built with ❤️ by the Study Buddy Team</b><br>
   
-</div> 
+</div>

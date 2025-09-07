@@ -1,43 +1,30 @@
-import { ReactNode, useEffect, useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
-interface ProtectedRouteProps {
-  children: ReactNode;
-  adminOnly?: boolean;
-}
-
-const ProtectedRoute = ({ children, adminOnly = false }: ProtectedRouteProps) => {
-  const { currentUser, loading, userProfile } = useAuth();
-  const location = useLocation();
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  
-  // In development mode, allow access without authentication
-  const isDevelopment = import.meta.env.DEV;
-  const bypassAuth = isDevelopment && true; // Change to false when you want to test authentication
-  
-  useEffect(() => {
-    if (userProfile) {
-      setIsAdmin(userProfile.isAdmin || false);
-    }
-  }, [userProfile]);
-  
-  if (loading) {
-    return null;
-  }
-
-  // For admin routes, check if user is an admin
-  if (adminOnly && !isAdmin && !bypassAuth) {
-    return <Navigate to="/not-found" state={{ from: location }} replace />;
-  }
-
-  // If not authenticated and not bypassing auth, redirect to login page
-  if (!currentUser && !bypassAuth) {
-    return <Navigate to="/auth" state={{ from: location }} replace />;
-  }
-
-  // User is authenticated, or we're bypassing auth in development
-  return <>{children}</>;
+type ProtectedRouteProps = {
+  requiredRole?: 'student' | 'teacher' | null;
 };
 
-export default ProtectedRoute; 
+const ProtectedRoute = ({ requiredRole }: ProtectedRouteProps) => {
+  const { user, userRole, isLoading } = useAuth();
+
+  // Show loading state
+  if (isLoading) {
+    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+  }
+
+  // If not logged in, redirect to auth page
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
+
+  // If role is required and user doesn't have it, redirect to appropriate dashboard
+  if (requiredRole && userRole !== requiredRole) {
+    return <Navigate to={userRole === 'teacher' ? '/teacher-dashboard' : '/student-dashboard'} replace />;
+  }
+
+  // If all checks pass, render the child routes
+  return <Outlet />;
+};
+
+export default ProtectedRoute;

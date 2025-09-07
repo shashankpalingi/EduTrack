@@ -1,18 +1,14 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Toaster } from './components/ui/toaster';
-import { SidebarProvider } from './contexts/SidebarContext';
 import Index from './pages/Index';
 import Auth from './pages/Auth';
-import NotFound from './pages/NotFound';
+import StudentDashboard from './pages/StudentDashboard';
+import TeacherDashboard from './pages/TeacherDashboard';
 import ProtectedRoute from './components/ProtectedRoute';
-import Profile from './pages/Profile';
-import StudyRooms from './pages/StudyRooms';
-import CreateRoom from './pages/CreateRoom';
-import StudyRoomView from './pages/StudyRoomView';
-import Admin from './pages/Admin';
 import './App.css';
 import { useState } from 'react';
 import Preloader from './components/ui/preloader';
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,63 +17,27 @@ function App() {
     <>
       <Preloader onLoadComplete={() => setIsLoading(false)} />
       <div className={`${isLoading ? 'hidden' : ''}`}>
-        <SidebarProvider>
+        <AuthProvider>
           <div className="app-container">
             <Toaster />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
               
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
+              {/* Protected student routes */}
+              <Route element={<ProtectedRoute requiredRole="student" />}>
+                <Route path="/student-dashboard" element={<StudentDashboard />} />
+              </Route>
               
-              <Route
-                path="/study-rooms"
-                element={
-                  <ProtectedRoute>
-                    <StudyRooms />
-                  </ProtectedRoute>
-                }
-              />
+              {/* Protected teacher routes */}
+              <Route element={<ProtectedRoute requiredRole="teacher" />}>
+                <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+              </Route>
               
-              <Route
-                path="/create-room"
-                element={
-                  <ProtectedRoute>
-                    <CreateRoom />
-                  </ProtectedRoute>
-                }
-              />
-              
-              <Route
-                path="/study-room/:roomId"
-                element={
-                  <ProtectedRoute>
-                    <StudyRoomView />
-                  </ProtectedRoute>
-                }
-              />
-
-              <Route
-                path="/admin"
-                element={
-                  <ProtectedRoute>
-                    <Admin />
-                  </ProtectedRoute>
-                }
-              />
-              
-              <Route path="/not-found" element={<NotFound />} />
-              <Route path="*" element={<Navigate to="/not-found" replace />} />
+              <Route path="*" element={<Index />} />
             </Routes>
           </div>
-        </SidebarProvider>
+        </AuthProvider>
       </div>
     </>
   );
