@@ -1,17 +1,23 @@
-import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { Button } from '../components/ui/button';
-import GradientPage from '../components/ui/gradient-page';
-import GlassCard from '../components/ui/glass-card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import MaterialBrowser from '../components/student/MaterialBrowser';
-import QuizTaker from '../components/student/QuizTaker';
-import ProgressTracker from '../components/student/ProgressTracker';
-import { BookOpen, FileQuestion, BarChart3, Bot } from 'lucide-react';
+import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { Button } from "../components/ui/button";
+import GradientPage from "../components/ui/gradient-page";
+import GlassCard from "../components/ui/glass-card";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../components/ui/tabs";
+import MaterialBrowser from "../components/student/MaterialBrowser";
+import QuizTaker from "../components/student/QuizTaker";
+import ProgressTracker from "../components/student/ProgressTracker";
+import DoubtAssistant from "../components/ai/DoubtAssistant";
+import { BookOpen, FileQuestion, BarChart3, Bot } from "lucide-react";
 
 const StudentDashboard = () => {
   const { user, signOut } = useAuth();
-  const [activeTab, setActiveTab] = useState('materials');
+  const [activeTab, setActiveTab] = useState("materials");
 
   return (
     <GradientPage>
@@ -20,54 +26,70 @@ const StudentDashboard = () => {
           <h1 className="text-3xl font-bold">Student Dashboard</h1>
           <div className="flex items-center gap-4">
             <span className="text-white/80">{user?.email}</span>
-            <Button onClick={signOut} variant="outline">Sign Out</Button>
+            <Button onClick={signOut} variant="outline">
+              Sign Out
+            </Button>
           </div>
         </div>
 
         <GlassCard>
-        <Tabs defaultValue="materials" value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid grid-cols-4 mb-4">
-          <TabsTrigger value="materials" className="flex items-center gap-2">
-            <BookOpen className="h-4 w-4" />
-            <span>Study Materials</span>
-          </TabsTrigger>
-          <TabsTrigger value="quizzes" className="flex items-center gap-2">
-            <FileQuestion className="h-4 w-4" />
-            <span>Quizzes</span>
-          </TabsTrigger>
-          <TabsTrigger value="progress" className="flex items-center gap-2">
-            <BarChart3 className="h-4 w-4" />
-            <span>Progress</span>
-          </TabsTrigger>
-          <TabsTrigger value="ai" className="flex items-center gap-2">
-            <Bot className="h-4 w-4" />
-            <span>AI Assistant</span>
-          </TabsTrigger>
-        </TabsList>
+          <Tabs
+            defaultValue="materials"
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
+            <TabsList className="grid grid-cols-4 mb-4">
+              <TabsTrigger
+                value="materials"
+                className="flex items-center gap-2"
+              >
+                <BookOpen className="h-4 w-4" />
+                <span>Study Materials</span>
+              </TabsTrigger>
+              <TabsTrigger value="quizzes" className="flex items-center gap-2">
+                <FileQuestion className="h-4 w-4" />
+                <span>Quizzes</span>
+              </TabsTrigger>
+              <TabsTrigger value="progress" className="flex items-center gap-2">
+                <BarChart3 className="h-4 w-4" />
+                <span>Progress</span>
+              </TabsTrigger>
+              <TabsTrigger value="ai" className="flex items-center gap-2">
+                <Bot className="h-4 w-4" />
+                <span>AI Assistant</span>
+              </TabsTrigger>
+            </TabsList>
 
-        <TabsContent value="materials">
-          <MaterialBrowser />
-        </TabsContent>
+            <TabsContent value="materials">
+              <MaterialBrowser />
+            </TabsContent>
 
-        <TabsContent value="quizzes">
-          <QuizTaker />
-        </TabsContent>
+            <TabsContent value="quizzes">
+              <QuizTaker />
+            </TabsContent>
 
-        <TabsContent value="progress">
-          <ProgressTracker />
-        </TabsContent>
+            <TabsContent value="progress">
+              <ProgressTracker />
+            </TabsContent>
 
-        <TabsContent value="ai">
-          <GlassCard className="p-6">
-            <h2 className="text-xl font-semibold mb-4">AI Learning Assistant</h2>
-            <p className="text-white/80 mb-4">Get help with your studies using our AI assistant.</p>
-            <div className="p-6 border border-dashed border-white/20 rounded-lg text-center">
-              <p className="text-white/70">AI Assistant feature coming soon!</p>
-              <p className="text-white/60 mt-2">This feature will allow you to ask questions about your study materials and get instant help.</p>
-            </div>
-          </GlassCard>
-        </TabsContent>
-        </Tabs>
+            <TabsContent value="ai">
+              <div className="space-y-4">
+                <div className="text-center mb-6">
+                  <h2 className="text-2xl font-bold text-white mb-2">
+                    AI Study Assistant
+                  </h2>
+                  <p className="text-white/80">
+                    Ask any question and get instant, clear explanations to help
+                    with your studies
+                  </p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <DoubtAssistant className="[&_.max-w-4xl]:max-w-none" />
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </GlassCard>
       </div>
     </GradientPage>
