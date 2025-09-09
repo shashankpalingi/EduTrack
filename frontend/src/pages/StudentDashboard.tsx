@@ -13,7 +13,7 @@ import MaterialBrowser from "../components/student/MaterialBrowser";
 import QuizTaker from "../components/student/QuizTaker";
 import ProgressTracker from "../components/student/ProgressTracker";
 import DoubtAssistant from "../components/ai/DoubtAssistant";
-import { BookOpen, FileQuestion, BarChart3, Bot } from "lucide-react";
+import { BookOpen, FileQuestion, BarChart3, Bot, Users } from "lucide-react";
 
 const StudentDashboard = () => {
   const { user, signOut } = useAuth();
@@ -39,7 +39,7 @@ const StudentDashboard = () => {
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="grid grid-cols-4 mb-4">
+            <TabsList className="grid grid-cols-5 mb-4">
               <TabsTrigger
                 value="materials"
                 className="flex items-center gap-2"
@@ -58,6 +58,13 @@ const StudentDashboard = () => {
               <TabsTrigger value="ai" className="flex items-center gap-2">
                 <Bot className="h-4 w-4" />
                 <span>AI Assistant</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="studyroom"
+                className="flex items-center gap-2"
+              >
+                <Users className="h-4 w-4" />
+                <span>Study Room</span>
               </TabsTrigger>
             </TabsList>
 
@@ -88,6 +95,20 @@ const StudentDashboard = () => {
                   <DoubtAssistant className="[&_.max-w-4xl]:max-w-none" />
                 </div>
               </div>
+            </TabsContent>
+
+            <TabsContent value="studyroom">
+              <GlassCard className="p-0 overflow-hidden">
+                <div className="h-[70vh] w-full">
+                  <iframe
+                    src="https://studybuddy08.netlify.app/"
+                    title="Study Room"
+                    className="w-full h-full border-0"
+                    allow="clipboard-write; microphone; camera; fullscreen; autoplay"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </GlassCard>
             </TabsContent>
           </Tabs>
         </GlassCard>
